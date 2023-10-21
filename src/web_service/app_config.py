@@ -6,7 +6,7 @@ CATEGORICAL_VARS = ["PULocationID", "DOLocationID", "passenger_count"]
 
 
 # MISC
-APP_TITLE = "TripDurationPredictionApp"
+APP_TITLE = "AbaloneAgePredictionApp"
 APP_DESCRIPTION = (
     "A simple API to predict abalone ages given"
     "different features extracted from a Kaggle dataset."
