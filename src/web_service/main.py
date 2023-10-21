@@ -2,10 +2,11 @@
 
 
 from fastapi import FastAPI
-
+from app_config import APP_TITLE, APP_DESCRIPTION
+from lib.models import InputData, OutputData
 # Other imports
 
-app = FastAPI(title="...", description="...")
+app = FastAPI(title=APP_TITLE, description=APP_DESCRIPTION)
 
 
 @app.get("/")
@@ -13,6 +14,6 @@ def home() -> dict:
     return {"health_check": "App up and running!"}
 
 
-@app.post("/predict", response_model="InsertHereAPydanticClass", status_code=201)
-def predict(payload: "InsertHereAPydanticClass") -> dict:
-    # TODO: complete and replace the "InsertHereAPydanticClass" with the correct Pydantic classes defined in web_service/lib/models.py
+@app.post("/predict", response_model=OutputData, status_code=201)
+def predict(payload: InputData) -> dict:
+    
