@@ -15,4 +15,4 @@ class InputData(BaseModel):
 
 
 class OutputData(BaseModel):
-    Age: int
+    Age: float
