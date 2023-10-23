@@ -1,8 +1,9 @@
 # Pydantic models for the web service
 from pydantic import BaseModel
 
+
 class InputData(BaseModel):
-    Sex: str = 'M'
+    Sex: str = "M"
     Length: float
     Diameter: float
     Height: float

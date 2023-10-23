@@ -1,9 +1,8 @@
-
-DATA_PATH = 'data'
-TRAIN_PATH = DATA_PATH + '/abalone_train.csv'
-TEST_PATH = DATA_PATH + '/abalone_test.csv'
-PREDICT_PATH = DATA_PATH + '/abalone_predict.csv'
-MODEL_PATH = 'local_objects'
+DATA_PATH = "data"
+TRAIN_PATH = DATA_PATH + "/abalone_train.csv"
+TEST_PATH = DATA_PATH + "/abalone_test.csv"
+PREDICT_PATH = DATA_PATH + "/abalone_predict.csv"
+MODEL_PATH = "local_objects"
 
 # MODELS
 MODEL_VERSION = "0.0.1"

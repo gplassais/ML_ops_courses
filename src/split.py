@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def split_dataframe(df, ratios=[0.6, 0.2, 0.2]):
     """
     Splits a DataFrame into multiple DataFrames based on given ratios.
@@ -25,8 +26,11 @@ def split_dataframe(df, ratios=[0.6, 0.2, 0.2]):
 
     return df1, df2, df3
 
+
 if __name__ == "__main__":
-    kaggle_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"
+    kaggle_url = (
+        "https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data"
+    )
     column_names = [
         "Sex",
         "Length",
