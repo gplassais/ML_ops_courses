@@ -1,5 +1,3 @@
-# TODO - complete with requirements (pandas, sklearn etc...)
-# Then, execute "pip-compile requirements.in" to generate the file requirements.txt
 loguru==0.7.2
 prefect==2.13.8
 ipykernel==6.25.2

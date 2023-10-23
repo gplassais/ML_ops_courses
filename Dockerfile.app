@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y gcc python3-dev \
 COPY ./config /app_home/src/modelling/config
 COPY ./src/web_service /app_home/src/web_service
 COPY ./src/modelling /app_home/src/modelling
-COPY ./data /app_home/src/modelling/data
+COPY ./data /app_home/data
 COPY ./bin/run_services.sh /app_home/run_services.sh
 
 EXPOSE 8001
@@ -18,4 +18,4 @@ EXPOSE 4201
 
 RUN chmod 777 /app_home/run_services.sh
 
-CMD ["python", "/app_home/src/modelling/main.py"]
+CMD ["/app_home/run_services.sh"]
