@@ -15,6 +15,13 @@ This repository has for purpose to industrialize the [Abalone age prediction](ht
 
 ### Team
 **Arthur Perrigot - Théophile Lepic - Aristide Gasquet - Guillaume Plassais - Matthieu Marquis--Lorber - Guillaume d'Hérouville**
+Respectively :
+ - arthurprgt
+ - tlepic
+ - arigqt
+ - gplassais
+ - mattmrq
+ - guillaumedherouville
 
 <details>
 <summary>Details on the Abalone Dataset</summary>
