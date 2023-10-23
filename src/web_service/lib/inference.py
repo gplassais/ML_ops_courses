@@ -4,12 +4,11 @@ import numpy as np
 import pandas as pd
 import scipy
 from loguru import logger
-from prefect import flow, task
 from scipy.sparse import csr_matrix
 from sklearn.feature_extraction import DictVectorizer
+from sklearn.linear_model import LinearRegression
 
 
-@task
 def load_data(path: str) -> pd.DataFrame:
     """
     Load data from a CSV file.
@@ -24,7 +23,6 @@ def load_data(path: str) -> pd.DataFrame:
     return df
 
 
-@task
 def compute_target(df: pd.DataFrame) -> pd.DataFrame:
     """
     Compute the 'Age' column based on the 'Rings' column and drop the 'Rings' column.
@@ -39,7 +37,6 @@ def compute_target(df: pd.DataFrame) -> pd.DataFrame:
     return df.drop("Rings", axis=1)
 
 
-@task
 def encode_categorical_cols(
     df: pd.DataFrame, categorical_cols: List[str] = None
 ) -> pd.DataFrame:
@@ -59,7 +56,6 @@ def encode_categorical_cols(
     return df
 
 
-@task
 def extract_x_y(
     df: pd.DataFrame,
     categorical_cols: List[str] = None,
@@ -93,7 +89,6 @@ def extract_x_y(
     return x, y, dv
 
 
-@flow(retries=3, retry_delay_seconds=5, log_prints=True)
 def process_data(
     filepath: str, dv=None, with_target: bool = True
 ) -> scipy.sparse.csr_matrix:
@@ -117,3 +112,17 @@ def process_data(
         df1 = encode_categorical_cols(df)
         logger.debug(f"{filepath} | Extracting X and y...")
         return extract_x_y(df1, dv=dv, with_target=with_target)
+
+
+def predict_age(input_data: csr_matrix, model: LinearRegression) -> np.ndarray:
+    """
+    Predict using the trained model.
+
+    Parameters:
+    - input_data (csr_matrix): Input features matrix.
+    - model (LinearRegression): Trained linear regression model.
+
+    Returns:
+    - np.ndarray: Predicted values.
+    """
+    return model.predict(input_data)

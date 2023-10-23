@@ -1,10 +1,8 @@
-# Use this module to code a `pickle_object` function. This will be useful to pickle the model (and encoder if need be).
 import pickle
+from functools import lru_cache
 
-from prefect import task
 
-
-@task(name="Save", tags=["Serialize"])
+@lru_cache
 def save_pickle(path: str, obj: dict):
     """
     Save an object as a pickled file.
@@ -17,7 +15,7 @@ def save_pickle(path: str, obj: dict):
         pickle.dump(obj, f)
 
 
-@task(name="Load", tags=["Serialize"])
+@lru_cache
 def load_pickle(path: str):
     """
     Load a pickled object from a file.
