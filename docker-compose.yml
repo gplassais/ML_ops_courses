@@ -1,0 +1,10 @@
+version: '3'
+services:
+  container1:
+    image: test_image
+    ports:
+      - "8000:8001"
+  container2:
+    image: test_image
+    ports:
+      - "4200:4201"
