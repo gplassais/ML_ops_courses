@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 
 class InputData(BaseModel):
-    Sex: str
+    Sex: str = 'M'
     Length: float
     Diameter: float
     Height: float
