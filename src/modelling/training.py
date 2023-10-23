@@ -1,7 +1,9 @@
 from scipy.sparse import csr_matrix 
 import numpy as np
 from sklearn.linear_model import LinearRegression
+from prefect import task
 
+@task
 def train_model(x_train: csr_matrix, y_train: np.ndarray) -> LinearRegression:
     """
     Train a linear regression model.

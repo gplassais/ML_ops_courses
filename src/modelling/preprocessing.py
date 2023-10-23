@@ -5,7 +5,9 @@ import scipy
 from scipy.sparse import csr_matrix
 from loguru import logger
 from sklearn.feature_extraction import DictVectorizer
+from prefect import task, flow
 
+@task
 def load_data(path: str) -> pd.DataFrame:
     """
     Load data from a CSV file.
@@ -19,6 +21,7 @@ def load_data(path: str) -> pd.DataFrame:
     df = pd.read_csv(path)
     return df
 
+@task
 def compute_target(df: pd.DataFrame) -> pd.DataFrame:
     """
     Compute the 'Age' column based on the 'Rings' column and drop the 'Rings' column.
@@ -32,6 +35,7 @@ def compute_target(df: pd.DataFrame) -> pd.DataFrame:
     df['Age'] = df['Rings'] + 1.5
     return df.drop('Rings', axis=1)
 
+@task
 def encode_categorical_cols(
     df: pd.DataFrame, categorical_cols: List[str] = None
 ) -> pd.DataFrame:
@@ -50,6 +54,7 @@ def encode_categorical_cols(
     df[categorical_cols] = df[categorical_cols].astype("str")
     return df
 
+@task
 def extract_x_y(
     df: pd.DataFrame,
     categorical_cols: List[str] = None,
@@ -82,6 +87,7 @@ def extract_x_y(
     x = dv.transform(dicts)
     return x, y, dv
 
+@flow(retries=3, retry_delay_seconds=5, log_prints=True)
 def process_data(filepath: str, dv=None, with_target: bool = True) -> scipy.sparse.csr_matrix:
     """
     Load data from a parquet file
