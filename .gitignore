@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+#mlflow
+*/mlruns
+
 # Distribution / packaging
 .Python
 build/
@@ -133,3 +136,7 @@ dmypy.json
 # Secret files
 secrets/*
 !secrets/.gitkeep
+
+# Data
+*.csv
+.DS_Store
