@@ -6,9 +6,10 @@ from loguru import logger
 from training import train_model
 from preprocessing import process_data
 from utils import save_pickle
+from config.config import TRAIN_PATH
 
 
-def main(trainset_path: Path) -> None:
+def main(trainset_path: Path = TRAIN_PATH) -> None:
     """Train a model using the data at the given path and save the model (pickle)."""
     # Read data
     logger.info("Processing training data...")

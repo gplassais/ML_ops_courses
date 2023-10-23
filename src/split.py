@@ -1,6 +1,5 @@
 import pandas as pd
-import requests
-from config import TRAIN_PATH, TEST_PATH, PREDICT_PATH
+from config.config import TRAIN_PATH, TEST_PATH, PREDICT_PATH
 
 def split_dataframe(df, ratios=[0.6, 0.2, 0.2]):
     """
