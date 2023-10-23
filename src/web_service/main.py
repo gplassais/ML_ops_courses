@@ -2,8 +2,8 @@
 
 
 from fastapi import FastAPI
-from app_config import APP_TITLE, APP_DESCRIPTION
-from lib.models import InputData, OutputData
+from .app_config import APP_TITLE, APP_DESCRIPTION
+from .lib.models import InputData, OutputData
 
 # Other imports
 
