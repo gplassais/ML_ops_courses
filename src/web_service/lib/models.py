@@ -1,7 +1,6 @@
 # Pydantic models for the web service
 from pydantic import BaseModel
 
-
 class InputData(BaseModel):
     Sex: str = 'M'
     Length: float
@@ -11,7 +10,6 @@ class InputData(BaseModel):
     Shucked_weight: float
     Viscera_weight: float
     Shell_weight: float
-    Rings: int
 
 
 class OutputData(BaseModel):
