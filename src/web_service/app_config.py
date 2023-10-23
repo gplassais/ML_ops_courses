@@ -1,3 +1,10 @@
+
+DATA_PATH = 'data'
+TRAIN_PATH = DATA_PATH + '/abalone_train.csv'
+TEST_PATH = DATA_PATH + '/abalone_test.csv'
+PREDICT_PATH = DATA_PATH + '/abalone_predict.csv'
+MODEL_PATH = 'local_objects'
+
 # MODELS
 MODEL_VERSION = "0.0.1"
 PATH_TO_PREPROCESSOR = f"local_models/dv__v{MODEL_VERSION}.pkl"
