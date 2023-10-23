@@ -42,17 +42,18 @@ You can download the dataset on the [Kaggle page](https://www.kaggle.com/dataset
 The deliverable of this project is a copy of this repository with the industrialization of the Abalone age prediction model.
 The industrialization takes the form of an API (which runs locally) that can be used to make predictions on new data.
 
-### Notation
+### Evaluation
 
-The work will be noted on the following criteria:
+Your work will be graded based on the following criteria:
 
 - **Clarity** and quality of code 
   - good module structure
   - naming conventions
-  - (bonus) docstrings, formatting, type hints
-- **Reproducibility** and clarity of instructions to run the code
+  - correct docstrings, formatting, type hints (the code should be linted and formatted)
+- **Reproducibility** and clarity of instructions to run the code (we will actually try to run your code)
   - Having a clear README.md with the steps to reproduce to test the code
   - Having a working docker image with the required features (see bellow)
+  - Having clear instructions to re-create the Python environment
 - Having the following **features** in your project
   - Clear README with:
     - context of the project
@@ -60,12 +61,13 @@ The work will be noted on the following criteria:
   - A working API which can be used to make predictions on new data
     - The API can run on a docker container
     - The API has validation on input data (use Pydantic)
-  - The code to get the trained model and encoder is in a separate module and must reproducible (not necessarily in a docker container)
+  - The code to get the trained model and encoder is in a separate module and must be reproducible (not necessarily in a docker container)
   - The workflows to train the model and to make the inference (prediction of the age of abalone) are in separate modules and use Prefect `flow` and `task` objects
+- Use of *Pull Requests* (see below) to coordinate your collaboration 
 
 ## Steps to reproduce to build the deliverable
 
-To help you with the structure and order of steps to perform in this project, we have created different templates for pull requests. 
+To help you with the structure and order of steps to perform in this project, we created different pull requests templates. 
 Each branch in this repository corresponds to a future pull request and has an attached markdown file with the instructions to perform the tasks of the pull request.
 Each branch starts with a number.
 You can follow the order of the branches to build your project and collaborate.
@@ -73,7 +75,7 @@ You can follow the order of the branches to build your project and collaborate.
 > [!NOTE]
 > There are "TODO" in the code of the different branches. Each "TODO" corresponds to a task to perform to build the project.
 
-**You can follow the following steps**:
+**Please follow these steps**:
 
 - If not done already, create a GitHub account
 - If not done already, create a [Kaggle account](https://www.kaggle.com/account/login?phase=startRegisterTab&returnUrl=%2F) (so you can download the dataset)
@@ -83,20 +85,38 @@ You can follow the order of the branches to build your project and collaborate.
 
 - Add the different members of your group as admin to your forked repository
 - Follow the order of the numbered branches and for each branch:
-  - Do as many commits as necessary to perform the task indicated in the corresponding markdown file
-  - Open a pull request from this branch to the main branch of your forked repository
-  - Once done, merge the pull request in your the main branch of your forked repository
+  - Read the PR_i.md (where i is the number of the branch) file to understand the task to perform
+   > [!NOTE]
+   > Dont forget to integrate your work from past branches (except for when working on branch #1 obviously (!))
+   > ```bash
+   > git checkout branch_number_i
+   > git pull origin master
+   > # At this point, you might have a VIM window opening, you can close it using the command ":wq" 
+   > git push
+   > ```
+    - Do as many commits as necessary on the branch_number_i to perform the task indicated in the corresponding markdown file
+    - Open a pull request from this branch to the main branch of your forked repository
+    - Once done, merge the pull request in the main branch of your forked repository
 
 ### Pull requests in this project
 
 Github [Pull Requests](https://docs.github.com/articles/about-pull-requests) are a way to propose changes to a repository. They have for purpose to integrate the work of *feature branches* into the main branch of the repository, with a collaborative review process.
 
+**PR tips:**
+
+Make sure that you select your own repository when selecting the base repository:
+
+![PR Wrong](assets/PR_wrong.png)
+
+It should rather look like this:
+
+![PR Right](assets/PR_right.png)
 
 ### Tips to work on this project
 
 - Use a virtual environment to install the dependencies of the project (conda or virtualenv for instance)
 
-- Once your virtual environment is activated, install the pre-commit hooks to automatically format your code before each commit:
+- Once your virtual environment is activated, install pre-commit hooks to automatically format your code before each commit:
 
 ```bash
 pip install pre-commit
