@@ -13,6 +13,9 @@
 
 This repository has for purpose to industrialize the [Abalone age prediction](https://www.kaggle.com/datasets/rodolfomendes/abalone-dataset) Kaggle contest.
 
+### Team
+**Arthur Perrigot - Théophile Lepic - Aristide Gasquet - Guillaume Plassais - Matthieu Marquis--Lorber - Guillaume d'Hérouville**
+
 <details>
 <summary>Details on the Abalone Dataset</summary>
 
@@ -23,7 +26,7 @@ The age of abalone is determined by cutting the shell through the cone, staining
 </details>
 
 
-## Run the Dockerfile
+## Run the Dockerfile from your computer
 
 1. Make sure than you have Docker Desktop open on your computer.
 2. Build the Docker image
@@ -37,6 +40,20 @@ docker-compose up -d
 4. Try out the app
   - Check the workflows at http://localhost:4200
   - Try out the API at http://localhost:8001/docs
+
+
+## Run the Dockerfile from Docker Hub
+
+1. Make sure than you have Docker Desktop open on your computer.
+2. Modify the docker-compose.yml: replace `abalone_age` with `adherouville/mlops_artefact:3`
+3. Run the Docker container
+```
+docker-compose up -d
+```
+4. Try out the app
+  - Check the workflows at http://localhost:4200
+  - Try out the API at http://localhost:8001/docs
+
 
 ## Working on local computer
 1. Clone the repository locally
