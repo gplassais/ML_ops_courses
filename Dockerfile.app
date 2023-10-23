@@ -7,10 +7,9 @@ RUN apt-get update && apt-get install -y gcc python3-dev \
     && pip install --upgrade pip \
     && pip install --no-cache-dir -r /app_home/requirements.txt
 
+COPY ./src /app_home/src
 COPY ./config /app_home/src/modelling/config
-COPY ./src/web_service /app_home/src/web_service
-COPY ./src/modelling /app_home/src/modelling
-COPY ./data /app_home/data
+RUN mkdir /app_home/data
 COPY ./bin/run_services.sh /app_home/run_services.sh
 
 EXPOSE 8001

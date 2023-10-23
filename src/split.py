@@ -1,5 +1,4 @@
 import pandas as pd
-from config.config import TRAIN_PATH, TEST_PATH, PREDICT_PATH
 
 def split_dataframe(df, ratios=[0.6, 0.2, 0.2]):
     """
@@ -40,10 +39,8 @@ if __name__ == "__main__":
         "Rings",
     ]
     df = pd.read_csv(kaggle_url, names=column_names)
-    df.to_csv("../data/abalone.csv", index=False)
-
     df1, df2, df3 = split_dataframe(df.sample(frac=1))
 
-    df1.to_csv(TRAIN_PATH, index=False)
-    df2.to_csv(TEST_PATH, index=False)
-    df3.to_csv(PREDICT_PATH, index=False)
+    df1.to_csv("data/abalone_train.csv", index=False)
+    df2.to_csv("data/abalone_test.csv", index=False)
+    df3.to_csv("data/abalone_predict.csv", index=False)
