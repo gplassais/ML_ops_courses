@@ -1,12 +1,9 @@
-import os
 import pickle
 from functools import lru_cache
 
-from loguru import logger
-
 
 @lru_cache
-def save_pickle(path: str, obj:dict):
+def save_pickle(path: str, obj: dict):
     """
     Save an object as a pickled file.
 

@@ -1,39 +1,43 @@
 from typing import List, Tuple, Union
+
 import numpy as np
 import pandas as pd
 import scipy
-from scipy.sparse import csr_matrix
 from loguru import logger
+from prefect import flow, task
+from scipy.sparse import csr_matrix
 from sklearn.feature_extraction import DictVectorizer
-from prefect import task, flow
+
 
 @task
 def load_data(path: str) -> pd.DataFrame:
     """
     Load data from a CSV file.
-    
+
     Parameters:
     - path (str): Path to the CSV file.
-    
+
     Returns:
     - pd.DataFrame: Loaded dataframe.
     """
     df = pd.read_csv(path)
     return df
 
+
 @task
 def compute_target(df: pd.DataFrame) -> pd.DataFrame:
     """
     Compute the 'Age' column based on the 'Rings' column and drop the 'Rings' column.
-    
+
     Parameters:
     - df (pd.DataFrame): Input dataframe.
-    
+
     Returns:
     - pd.DataFrame: Dataframe with 'Age' column computed and 'Rings' column dropped.
     """
-    df['Age'] = df['Rings'] + 1.5
-    return df.drop('Rings', axis=1)
+    df["Age"] = df["Rings"] + 1.5
+    return df.drop("Rings", axis=1)
+
 
 @task
 def encode_categorical_cols(
@@ -41,11 +45,11 @@ def encode_categorical_cols(
 ) -> pd.DataFrame:
     """
     Encode categorical columns as strings.
-    
+
     Parameters:
     - df (pd.DataFrame): Input dataframe.
     - categorical_cols (List[str]): List of categorical columns to encode.
-    
+
     Returns:
     - pd.DataFrame: Dataframe with categorical columns encoded.
     """
@@ -53,6 +57,7 @@ def encode_categorical_cols(
         categorical_cols = ["Sex"]
     df[categorical_cols] = df[categorical_cols].astype("str")
     return df
+
 
 @task
 def extract_x_y(
@@ -63,13 +68,13 @@ def extract_x_y(
 ) -> Tuple[csr_matrix, Union[np.ndarray, None], DictVectorizer]:
     """
     Extract features and target from the dataframe.
-    
+
     Parameters:
     - df (pd.DataFrame): Input dataframe.
     - categorical_cols (List[str]): List of categorical columns.
     - dv (DictVectorizer): DictVectorizer instance.
     - with_target (bool): Whether to extract target or not.
-    
+
     Returns:
     - Tuple: Features matrix, target array, and DictVectorizer instance.
     """
@@ -87,8 +92,11 @@ def extract_x_y(
     x = dv.transform(dicts)
     return x, y, dv
 
+
 @flow(retries=3, retry_delay_seconds=5, log_prints=True)
-def process_data(filepath: str, dv=None, with_target: bool = True) -> scipy.sparse.csr_matrix:
+def process_data(
+    filepath: str, dv=None, with_target: bool = True
+) -> scipy.sparse.csr_matrix:
     """
     Load data from a parquet file
     Compute target (duration column) and apply threshold filters (optional)

@@ -2,8 +2,11 @@ from fastapi import FastAPI
 from .app_config import APP_TITLE, APP_DESCRIPTION
 from .lib.models import InputData, OutputData
 from .lib.utils import load_pickle
-from .app_config import TRAIN_PATH, TEST_PATH, PREDICT_PATH, MODEL_PATH
-from .lib.inference import process_data, predict_age, compute_target, extract_x_y, encode_categorical_cols
+from .lib.inference import (
+    predict_age,
+    extract_x_y,
+    encode_categorical_cols,
+)
 import pandas as pd
 from typing import List
 
@@ -48,7 +51,7 @@ def predict(abalones: InputData) -> dict:
     model = load_pickle("src/web_service/local_objects/model.pkl")
     df2 = encode_categorical_cols(df)
     x, y, _ = extract_x_y(df2, dv=dv, with_target=False)
-    
+
     predictions = predict_age(x, model)
 
     return {"Age": predictions}

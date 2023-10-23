@@ -1,9 +1,11 @@
 # Use this module to code a `pickle_object` function. This will be useful to pickle the model (and encoder if need be).
 import pickle
+
 from prefect import task
 
+
 @task(name="Save", tags=["Serialize"])
-def save_pickle(path: str, obj:dict):
+def save_pickle(path: str, obj: dict):
     """
     Save an object as a pickled file.
 
