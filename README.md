@@ -25,8 +25,15 @@ The age of abalone is determined by cutting the shell through the cone, staining
 
 </details>
 
+## Clone the repository
+```
+git clone https://github.com/arthurprgt/xhec-mlops-project-student.git
+cd xhec-mlops-project-student
+```
 
 ## Run the Dockerfile from your computer
+
+The role of the Docker image is to facilitate the industrialization, deployment, and hosting of the trained model as an API for prediction.
 
 1. Make sure than you have Docker Desktop open on your computer.
 2. Build the Docker image
@@ -56,22 +63,18 @@ docker-compose up -d
 
 
 ## Working on local computer
-1. Clone the repository locally
-```
-git clone https://github.com/arthurprgt/xhec-mlops-project-student.git
-cd xhec-mlops-project-student
-```
-2. Create a virtual environment
+
+1. Create a virtual environment
 ```
 conda env create --file environment.yml
 conda activate x-hec-solution
 ```
-3. Install requirements
+2. Install requirements
 ```
 pip install -r requirements.txt
 pip install -e .
 ```
-4. Running the workflows with Prefect
+3. Running the workflows with Prefect
 ```
 prefect config set PREFECT_API_URL=http://0.0.0.0:4200/api
 ```
@@ -83,7 +86,7 @@ python src/modelling/main.py
 ```
 Check the workflows at http://localhost:4200
 
-5. Running the API with uvicorn
+4. Running the API with uvicorn
 ```
 uvicorn src.web_service.main:app --host 0.0.0.0 --port 8001
 ```
