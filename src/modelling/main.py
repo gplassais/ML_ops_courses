@@ -38,8 +38,8 @@ def train_model_workflow(trainset_path: str,
         logger.info("Model and encoder saved !")
 
     # Return MSE
-    dict = {"model": model, "dv": dv, "mse": mse}
-    return dict
+    #dict = {"model": model, "dv": dv, "mse": mse}
+    #return dict
 
 @flow(retries=3, retry_delay_seconds=5, log_prints=True)
 def batch_predict_workflow(
@@ -83,5 +83,13 @@ if __name__ == "__main__":
         input_path=PREDICT_PATH,
         artifacts_path=MODEL_PATH
         )
-    serve(train_workflow)
-    serve(predict_workflow)
+    
+    train_model_workflow.to_deployment(name="Model training Deployment", parameters={
+            "trainset_path": TRAIN_PATH,
+            "testset_path": TEST_PATH,
+            "artifacts_path": MODEL_PATH,
+        })
+    batch_predict_workflow.to_deployment(name="Batch predict Deployment", parameters={
+            "input_path": PREDICT_PATH,
+            "artifacts_path": MODEL_PATH,
+        })
